@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "roleupdate";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+@model RoleEditModel
+<div class="container-xxl flex-grow-1 container-p-y">
+<form method="post">
+
+            <div class="card mb-4">
+                <h5 class="card-header">Rol İsmi:</h5>
+                <div class="card-body">
+                    <div>
+                    <input type="hidden"asp-for="RoleId"/>
+                      
+                        <input type="text"
+                               class="form-control"
+                           id="defaultFormControlInput"asp-for="RoleName" />
+
+                    </div>
+                </div>
+            </div>
+
+       @*  <div class="card  mb-4">
+        <h5 class="card-header">@Model.Role.Name Rolüne Ait Kullanıcılar</h5>
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    @if (Model.Member.Count == 0)
+                    {
+                        <div class="alert alert-danger" role="alert">Role Ait Kullanıcı Yok!</div>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>İsim</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+
+                                @foreach (var item in Model.Member)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="IdsToDelete" id="defaultCheck-@item.Id" value="@item.Id" />
+                                                <label class="form-check-label" for="defaultCheck-@item.Id">  @item.Name </label>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+            </div>
+
+    </div>
+        <div class="card  mb-4">
+        <h5 class="card-header">@Model.Role.Name Rolüne Ait Olmayan Kullanıcılar</h5>
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    @if (Model.NonMember.Count == 0)
+                    {
+
+                        <div class="alert alert-primary" role="alert">Bütün Kullanıcılar bu role ait!</div>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>İsim</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+
+                                @foreach (var item in Model.NonMember)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="IdsToAdd" id="defaultCheck-@item.Id" value="@item.Id" />
+                                                <label class="form-check-label" for="defaultCheck-@item.Id">  @item.Name </label>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+            </div>
+
+    </div> *@
+        <hr />
+        <input type="submit" value="Değişiklikleri Kaydet"  class="btn btn-primary"/>
+   
+</form></div>

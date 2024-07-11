@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewData["Title"] = "categoryupdate";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+@model CategoryModel
+
+
+<div class="container-fluid py-4">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Kategori Güncelle</h6>
+                </div>
+                <div class="card-body  pt-0 pb-2">
+                    <div class="table-responsive p-2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="categoryupdate" asp-controller="Category" asp-area="Admin" method="post">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" asp-for="Id"/>
+                                    <div class="form-group row">
+                                        <label asp-for="Name" class="col-sm-2 form-label"></label>
+                                        <div class="col-sm-9">
+                                            <input asp-for="Name" class="form-control">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Ürün Tablosu</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            @if (Model.Products.Count < 1)
+                                            {
+                                                <div class="alert alert-danger" role="alert">
+                                                    Kayıtlı ürün yok.
+                                                </div>
+                                            }
+                                            else
+                                            {
+
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>İsim</th>
+                                                                <th>Fiyat</th>
+                                                                <th>Anasayfada mı?</th>
+                                                                <th>Onaylı mı?</th>
+                                                                <th>#</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-border-bottom-0">
+
+                                                            @foreach (var item in Model.Products)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="d-flex px-2 py-1">
+                                                                            <div>
+
+                                                                                <img src="~/image/productimg/@item.image1" class="avatar avatar-sm me-3">
+                                                                            </div>
+                                                                            <div class="d-flex flex-column justify-content-center">
+                                                                                <h6 class="mb-0 text-sm">@item.Name</h6>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>@item.Price ₺</td>
+                                                                    <td>
+                                                                        @if (item.IsHome)
+                                                                        {
+                                                                            <span class="badge bg-label-success me-1">Anasayfada</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="badge bg-label-danger me-1">Anasayfada Değil</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (item.IsApproved)
+                                                                        {
+                                                                            <span class="badge bg-label-success me-1">Onaylı</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="badge bg-label-danger me-1">Onaylı Değil</span>
+                                                                        }
+                                                                    <td>
+                                                                        <a class="dropdown-item" href="/admin/product/ProductUpdate/@item.Id"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                        <form action="/admin/category/DeletefromCategory" style="display:inline;" method="post">
+                                                                            <input type="hidden" value="@item.Id" name="ProductId">
+                                                                            <input type="hidden" value="@Model.Id" name="CategoryId">
+                                                                            <button type="submit" class="dropdown-item" data-toggle="tooltip" data-original-title="Delete Product"><i class="bx bx-trash me-1"></i>Delete</button>
+                                                                        </form>
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                            }
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                              @*   <table class="table align-items-center mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Home</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Approved</th>
+
+                                                            <th class="text-secondary opacity-7"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.Products)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="d-flex px-2 py-1">
+                                                                        <div>
+
+                                                                            <img src="~/image/productimg/@item.image1" class="avatar avatar-sm me-3">
+                                                                        </div>
+                                                                        <div class="d-flex flex-column justify-content-center">
+                                                                            <h6 class="mb-0 text-sm">@item.Name</h6>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="text-xs font-weight-bold mb-0">@item.Price.ToString("c")</p>
+
+                                                                </td>
+
+                                                                <td class="align-middle text-center text-sm">
+                                                                    @if (item.IsHome)
+                                                                    {
+                                                                        <span class="badge badge-sm bg-gradient-success">Anaysafada</span>
+                                                                
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="badge badge-sm bg-gradient-secondary">Anasayfada değil</span>
+                                                                    
+                                                                    }
+
+
+                                                                </td>
+                                                                <td class="align-middle text-center text-sm">
+                                                                    @if (item.IsApproved)
+                                                                    {
+                                                                        <span class="badge badge-sm bg-gradient-success">Onaylı</span>
+                                                                      
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="badge badge-sm bg-gradient-secondary">Onaylı değil</span>
+                                                                   
+                                                                    }
+                                                                </td>
+
+                                                                <td class="align-middle">
+
+                                                                    <a href="/admin/product/productupdate/@item.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit Product">
+                                                                        Edit
+                                                                    </a>
+                                                                    <form action="/admin/category/DeletefromCategory" style="display:inline;" method="post">
+                                                                        <input type="hidden" value="@item.Id" name="ProductId">
+                                                                        <input type="hidden" value="@Model.Id" name="CategoryId">
+                                                                        <button type="submit" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete Product">Sil</button>
+                                                                    </form>
+
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table> *@
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

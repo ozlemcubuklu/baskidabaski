@@ -1,0 +1,202 @@
+﻿@model ProductModel
+
+@{
+    ViewData["Title"] = "ProductCreate";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ürün Ekle</span> </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header"></h5>
+                <div class="card-body">
+                    
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                </div>
+                            </div>
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label" asp-for="Name"></label>
+                        <input type="text"
+                               class="form-control"
+                               id="defaultFormControlInput" asp-for="Name"
+                               aria-describedby="defaultFormControlHelp" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        <div id="defaultFormControlHelp" class="form-text">
+                            We'll never share your details with anyone else.
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label" asp-for="Price"></label>
+                        <input type="text"
+                               class="form-control"
+                               id="defaultFormControlInput1" asp-for="Price"
+                               aria-describedby="defaultFormControlHelp" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        <div id="defaultFormControlHelp" class="form-text">
+                            We'll never share your details with anyone else.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label" asp-for="Description"></label>
+                        <textarea asp-for="Description" class="form-control" aria-describedby="defaultFormControlHelp"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        <div id="defaultFormControlHelp" class="form-text">
+                            We'll never share your details with anyone else.
+                        </div>
+                    </div>
+
+                    <div>
+                            <br />
+                    <label for="formFile" class="form-label">1. Resim</label>
+                        <input class="form-control" type="file" id="formFile"  asp-for="Image1"/>
+                            <span asp-validation-for="Image1" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="formFile" class="form-label">2. Resim</label>
+                        <input class="form-control" type="file" id="formFile" asp-for="Image2" />
+                            <span asp-validation-for="Image2" class="text-danger"></span>
+                    </div>
+
+                        <hr />
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked1" asp-for="IsApproved" />
+                        <label class="form-check-label" for="flexSwitchCheckChecked1">Onaylı mı?</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" asp-for="IsHome" />
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Anasayfada mı?</label>
+                    </div>
+                        <br />
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+
+                    </form>
+                    <br />
+                    <hr />
+                    <div>
+                        <a href="/admin/product/index">Product Listesi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+@* 
+
+
+<div class="container-fluid py-4">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Ürün Ekle</h6>
+                </div>
+                <div class="card-body  pt-0 pb-2">
+                    <div class="table-responsive p-2">
+
+                        <form asp-action="ProductCreate" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Name" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Price" class="form-control">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <textarea asp-for="Description" class="form-control"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Image1" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Image1" class="form-control" type="file">
+                                    <span asp-validation-for="Image1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Image2" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Image2" class="form-control" type="file">
+                                    <span asp-validation-for="Image2" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-check row">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                                </label>
+                            </div>
+
+                            <div class="form-group form-check row">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsHome" /> @Html.DisplayNameFor(model => model.IsHome)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+                        <div>
+                            <a asp-action="ProductList">Product Listesi</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ *@
+
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+@* <script>
+    CKEDITOR.replace('Description');
+</script> *@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+

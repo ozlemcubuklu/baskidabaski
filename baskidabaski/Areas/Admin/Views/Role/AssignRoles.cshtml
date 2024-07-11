@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+@model AssignRoleModel
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">@Model.UserName Kullanıcısına Rol Ata</span> </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Roller</h5>
+        <div class="card-body">
+            <div class="row gy-3">
+                <div class="col-md">
+                    @if (Model.RoleAssingViewModels.Count < 0)
+                    {
+                        <div class="alert alert-danger" role="alert">Atanacak rol bulunamadı.</div>
+                    }
+                    else
+                    {
+                        <form method="post">
+                            <input type="hidden" asp-for="UserId" />
+                            @for (int i = 0; i < Model.RoleAssingViewModels.Count; i++)
+                            {
+                                <div class="form-check">
+                                    <input type="hidden" asp-for="@Model.RoleAssingViewModels[i].RoleId">
+                                    <input type="hidden" asp-for="@Model.RoleAssingViewModels[i].RoleName">
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.RoleAssingViewModels[i].RoleExist">
+                                    <label class="form-check-label" for="@Model.RoleAssingViewModels[i].RoleExist">
+                                        @Model.RoleAssingViewModels[i].RoleName
+                                    </label>
+                                </div>
+
+                            }
+                            <input type="submit" class="btn btn-outline-primary" value="kaydet">
+                        </form>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>

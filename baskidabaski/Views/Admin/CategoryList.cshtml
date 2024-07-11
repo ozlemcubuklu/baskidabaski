@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+@using baskidabaski.Models;
+
+
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+@model CategoryListViewModel
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h4>Kategori Tablosu</h4>
+                </div>
+                <div class="card-header pb-0">
+                    <h6> <a asp-action="CreateCategory" asp-controller="Admin" class="btn btn-outline-info">Kategori Ekle</a></h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        @if (Model.Categories.Count < 1)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                Kayıtlı Kategori yok.
+                            </div>
+                        }else{
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                   
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                               
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@item.Name</h6>
+                                                  
+                                                </div>
+                                            </div>
+                                        </td>
+                                       
+                                      
+                                        <td class="align-middle">
+                                            <a href="/admin/categoryupdate/@item.Id" class="text-secondary text-xs" data-toggle="tooltip" data-original-title="Edit Product">
+                                                Edit
+                                                </a><a href="/admin/DeleteCategory/@item.Id" class="text-danger text-xs" data-toggle="tooltip" data-original-title="Delete Product">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>

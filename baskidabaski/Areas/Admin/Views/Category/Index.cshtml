@@ -1,0 +1,53 @@
+﻿
+@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Kategori Listesi</span> </h4>
+    <div>
+        <a href="/admin/category/CreateCategory">Kategori Ekle</a>
+    </div>
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Kategoriler</h5>
+
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>İsim</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td> 
+                           
+                           
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/admin/category/categoryupdate/@item.Id"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                    <a class="dropdown-item" href="/admin/category/DeleteCategory/@item.Id"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>

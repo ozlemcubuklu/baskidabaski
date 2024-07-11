@@ -1,0 +1,67 @@
+﻿@using Entity;
+@model List<Category>
+
+<div class="sidebar">
+	<div class="sidebar_section">
+		<div class="sidebar_title">
+			<h5>Ürün Kategorileri</h5>
+		</div>
+
+
+
+		<ul class="sidebar_categories">
+			<li class="">
+				<a href="/shop/list"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Tüm Kategoriler</a>
+			</li>
+
+			@foreach (var item in Model)
+			{
+				<li class="@(ViewBag.SelectedCategory == item.Name?"active":"")">
+					<a asp-controller="shop"
+					   asp-action="list"
+					   asp-route-category="@item.Name"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@item.Name</a>
+				</li>
+			
+			}
+			
+		</ul>
+	</div>
+
+
+
+
+	<div class="sidebar_section">
+		<div class="sidebar_title">
+			<h5>Ara</h5>
+        </div>
+		<form action="/shop/search" class="">
+            <div class="form-group">
+				<input name="q" type="text" class="form-control" placeholder="Search"  style="border:0; color:#f6931f; font-weight:bold;">
+            </div>
+			<button type="submit" class="filter_button" style="color:white">Ara</button>
+        </form>
+		
+	</div>
+
+
+
+
+
+
+
+@* 
+
+	<div class="sidebar_section">
+		<div class="sidebar_title">
+			<h5>Fiyata Göre Filtrele</h5>
+		</div>
+		<p>
+			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		</p>
+		<div id="slider-range"></div>
+		<div class="filter_button"><span>Filtrele</span></div>
+	</div>
+
+
+ *@
+</div>

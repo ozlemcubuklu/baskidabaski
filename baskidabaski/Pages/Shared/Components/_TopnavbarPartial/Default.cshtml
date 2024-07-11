@@ -1,0 +1,64 @@
+﻿@using System.Globalization;
+
+<div class="top_nav">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="top_nav_left">
+					@localizer["1000 ₺'den sonra kargo ücretsiz"]
+				</div>
+			</div>
+			<div class="col-md-6 text-right">
+				<div class="top_nav_right">
+					<ul class="top_nav_menu">
+
+						<!-- Currency / Language / My Account -->
+
+						<li class="currency">
+							<a href="#">
+								usd
+								<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="currency_selection">
+								<li><a href="#">cad</a></li>
+								<li><a href="#">aud</a></li>
+								<li><a href="#">eur</a></li>
+								<li><a href="#">gbp</a></li>
+							</ul>
+						</li>
+						<li class="language">
+							@if (CultureInfo.CurrentCulture.Name == "tr")
+							{
+								<a href="#">
+									Türkçe
+								<i class="fa fa-angle-down"></i>
+							</a>}
+
+							@if (CultureInfo.CurrentCulture.Name == "en")
+							{
+								<a href="#">
+									English
+									<i class="fa fa-angle-down"></i>
+								</a>
+							}
+							<ul class="language_selection">
+								<li><a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr">@localizer["Türkçe"]</a></li>
+								<li><a asp-controller ="Home" asp-action="ChangeLanguage" asp-route-culture="en">@localizer["İngilizce"]</a></li>
+							</ul>
+						</li>
+						<li class="account">
+							<a href="#">
+								@localizer["Hesabım"]
+								<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="account_selection">
+								<li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>@localizer["Giriş Yap"]</a></li>
+                                <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>@localizer["Üye Ol"]</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
